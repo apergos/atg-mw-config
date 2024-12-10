@@ -174,17 +174,6 @@ switch ( $wgDBname ) {
 		$wgLogos = [ '1x' => "$crappyLogosDir/Goatification_logo.svg",
 			     'icon' => "$crappyLogosDir/Goatification_logo.svg.png" ];
 
-		$wgEnableEmail = false;
-		$wgEnableUserEmail = false; # UPO
-
-		$wgEmergencyContact = "";
-		$wgPasswordSender = "";
-
-		$wgEnotifUserTalk = false; # UPO
-		$wgEnotifWatchlist = false; # UPO
-
-		$wgEmailAuthentication = true;
-
 		$wgDBssl = false;
 
 		# Time zone
@@ -196,11 +185,6 @@ switch ( $wgDBname ) {
 
 		# FIXME check this
 		$wgScribuntoEngineConf['luastandalone']['luaPath'] = '/usr/bin/lua';
-
-		$wgMainCacheType = CACHE_MEMCACHED;
-		$wgParserCacheType = CACHE_MEMCACHED; // optional
-		$wgMessageCacheType = CACHE_MEMCACHED; // optional
-		$wgMemCachedServers = [ '127.0.0.1:11211' ];
 
 		# $wgGlobalBlockingDatabase = "gbtesting";
 		$wgVirtualDomainsMapping['virtual-globalblocking'] = [ 'db' => 'centralauth' ];

@@ -1,5 +1,7 @@
 <?php
   $wgDbMapping = [];
+
+  ## SQL/XML dumps test wikis
   # these get from http://localhost/wikidbname/mw/...
   $wgDbMapping['none'] = [
 	'elwikt' => 'elwikt',
@@ -9,6 +11,7 @@
 	'wikidata' => 'wikidatawiki',
   ];
 
+  ## CentralAuth test wikis
   # url: http://<prefix>.<project>.test/mw/...
   $wgDbMapping['wikipedia'] = [
 	'testen' => 'testenwiki',
