@@ -1,0 +1,20 @@
+What is in here:
+
+LocalSettings.php                    -- copy this into your wikifarm mediawiki installation directory(ies) and edit the
+                                        farmpath appropriately
+CommonSettings.php                   -- settings common to all wikis in the farm
+DBMapping.php                        -- mapping depending on CentralAuth project name (or 'none') of wiki subdir name to wiki db name
+UrlToDB.php                          -- from the request url, derive the wiki db name (relies on DBMapping)
+Logging.php                          -- basic config for MediaWiki MonoLogSpi setup
+ATGDevSettings.php                   -- some dev related settings we probably don't need (stolen from DevelopmentSettings.php)
+
+InitialiseSettings.php               -- per-wiki settings and extension loading for CentralAuth wikis
+private/PrivateSettings_example.php  -- sample file with users, passwords and keys; edit appropriately and rename
+
+DumpWikisSettings.php                -- per-wiki settings and extension loading for SQL/XML dumps wikis (old)
+CentralAuthSettings.php              -- CentralAuth config settings
+CentralAuthWgConfSettings.php        -- wgConf settings for CentralAuth wikis
+
+TempLog.php                          -- crap logging for before MediaWiki logging is available
+
+WikibaseConfig.php                   -- old Wikibase config settings, needs to be rescued from bitrot some day, unused
