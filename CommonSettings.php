@@ -11,20 +11,17 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	exit;
 }
 
+$wgServer = "http://localhost";
+$wgDBserver = "localhost";
 # historically, local wikis managed by these config files have included
 # wikis for cli testing of SQL/XML dumps, wikis in a docker testbed for dumps,
 # and CentralAuth wikis.
-# if my hostname is $something.lan, assume I'm in the docker testbed and set
-# the server url accordingly. For the other cases, localhost is fine; CentralAuth
-# wikis will get an override for wgServer in InitialiseSettings.
-# we also need a different  db hostname for the docker testbed wikis.
+# if my hostname is $something.lan, assume we're in the docker testbed and set
+# the server url and db server name accordingly.
 $myName = gethostbyaddr(gethostbyname(gethostname()));
 if ( str_ends_with( $myName, ".lan" ) ) {
-    $wgServer = "http://atg-httpd.atg.lan";
-    $wgDBserver = "atg-dbprimary";
-} else {
-    $wgServer = "http://localhost";
-    $wgDBserver = "localhost";
+	$wgServer = "http://atg-httpd.atg.lan";
+	$wgDBserver = "atg-dbprimary";
 }
 
 require __DIR__ . "/DBMapping.php";
@@ -114,7 +111,7 @@ $wgCompressRevisions = true;
 # DO NOT FORGET
 $wgJobRunRate = 0;
 
-# default values overridden in InitialiseSettings
+# default value, overridden in InitialiseSettings
 $wmgUseCentralAuth = false;
 
 require __DIR__ . "/Logging.php";
