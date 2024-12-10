@@ -4,7 +4,7 @@ require_once __DIR__ . "/TempLog.php";
 
 # user names, passwords, upgrade keys and such go here.
 require __DIR__ . '/private/PrivateSettings.php';
-templog( "InitialiseSettings: wgDBuser is set to $wgDBuser" );
+templog( $logpath, "InitialiseSettings: wgDBuser is set to $wgDBuser" );
 
 # per-wiki settings go here.
 $basedir = "/";
@@ -18,7 +18,7 @@ $crappyScriptSubdir = [ 'elwikt' => 'elwikt/',
 			'testwiki' => 'testwiki/' ];
 $wgScriptPath = $basedir . ( $crappyScriptSubdir[ $wgDBname ] ?? '' ) . "mw";
 $wgResourceBasePath = $wgScriptPath;
-templog( "InitialiseSettings: wgResourceBasePath is set to $wgResourceBasePath" );
+templog( $logpath, "InitialiseSettings: wgResourceBasePath is set to $wgResourceBasePath" );
 
 $wgRightsIcon = "$wgResourceBasePath/resources/assets/licenses/cc-by-sa.png";
 $crappyLogosDir = "$wgResourceBasePath/resources/assets";
@@ -29,7 +29,7 @@ $crappyMWVersionSubdir = [ 'testenwiki' => 'php-master',
 			   'loginwiki' => 'php-master',
 			   'testenwikt' => 'php-master',
 			   'test2enwikt' => 'php-master' ];
-$crappyMWPath = "/var/www/html/wikifarm/mediawiki/" . ( $crappyMWVersionSubdir[ $wgDBname ] ?? 'latest' );
+$crappyMWPath = "$mwpath/" . ( $crappyMWVersionSubdir[ $wgDBname ] ?? 'latest' );
 putenv( 'MW_INSTALL_PATH=' . $crappyMWPath );
 
 # FIXME check this

@@ -4,7 +4,7 @@
 require_once __DIR__ . "/TempLog.php";
 
 $wgDBname = '';
-templog( "CommonSettings: wgdbname is initialized to empty" );
+templog( $logpath, "CommonSettings: wgdbname is initialized to empty" );
 
 $subdir = '';
 
@@ -13,7 +13,7 @@ $subdir = '';
 if (isset($_SERVER['REQUEST_URI'])) {
 	$subdir = explode('/', $_SERVER['REQUEST_URI'])[1];
 	$temprequri = $_SERVER['REQUEST_URI'];
-	templog( "CommonSettings: (old approach) subdir is $subdir and requesturi is $temprequri" );
+	templog( $logpath, "CommonSettings: (old approach) subdir is $subdir and requesturi is $temprequri" );
 	$project = "none";
 }
 
@@ -24,7 +24,7 @@ if (( $subdir == '' ) || (!isset($wgDbMapping['none'][$subdir]))) {
 		$subdir = explode('.', $_SERVER['SERVER_NAME'])[0];
 		$project = explode('.', $_SERVER['SERVER_NAME'])[1];
 		$tempservername = $_SERVER['SERVER_NAME'];
-		templog( "CommonSettings: (new approach) subdir is $subdir and servername is $tempservername" );
+		templog( $logpath, "CommonSettings: (new approach) subdir is $subdir and servername is $tempservername" );
 		if ( $subdir == '' || $project == '' ) {
 			header( "HTTP/1.1 500 Bad Request, unknown wiki <$subdir> and <$project>" );
 			exit(1);
@@ -32,7 +32,7 @@ if (( $subdir == '' ) || (!isset($wgDbMapping['none'][$subdir]))) {
 	}
 	if ( $subdir != '' ) {
 		$wgDBname = $wgDbMapping[$project][$subdir];
-		templog( "CommonSettings: (new approach) subdir is $subdir and wgDBname is $wgDBname" );
+		templog( $logpath, "CommonSettings: (new approach) subdir is $subdir and wgDBname is $wgDBname" );
 	}
 } else {
 	$wgDBname = $wgDbMapping['none'][$subdir];
@@ -40,7 +40,7 @@ if (( $subdir == '' ) || (!isset($wgDbMapping['none'][$subdir]))) {
 
 # we've been called from the cli, get the dbname out of $argv
 if (!$wgDBname) {
-	templog( "CommonSettings: (cli) wgdbname is not set" );
+	templog( $logpath, "CommonSettings: (cli) wgdbname is not set" );
 
 	# code lightly adapted from MWMultiversion.php
 	# The --wiki param must be the second argument to avoid any
@@ -48,10 +48,10 @@ if (!$wgDBname) {
 	$index = 1;
 	if ( isset( $argv[$index] ) && $argv[$index] === '--wiki' ) {
 		$wgDBname = isset( $argv[$index+1] ) ? $argv[$index+1] : ''; // "script.php --wiki dbname"
-		templog( "CommonSettings: cli (1) and wgDBname is $wgDBname" );
+		templog( $logpath, "CommonSettings: cli (1) and wgDBname is $wgDBname" );
 	} elseif ( isset( $argv[$index] ) && substr( $argv[$index], 0, 7 ) === '--wiki=' ) {
 		$wgDBname = substr( $argv[$index], 7 ); // "script.php --wiki=dbname"
-		templog( "CommonSettings: cli (2) and wgDBname is $wgDBname" );
+		templog( $logpath, "CommonSettings: cli (2) and wgDBname is $wgDBname" );
 	} else {
 		$envwiki = getenv('MW_PHPUNIT_WIKI');
 		if ( $envwiki !== false ) {

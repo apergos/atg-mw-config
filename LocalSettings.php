@@ -5,16 +5,18 @@
 # than the diagram in the wikifarm README, adjust the path below
 # accordingly.
 
-# uncoment when needed
 error_reporting( -1 );
 ini_set( 'display_errors', 1 );
 
-$configs = '/var/www/html/wikifarm/configs';
+$farmpath = '/var/www/html/wikifarm';
+$configs = "$farmpath/configs";
+$mwpath = "$farmpath/mediawiki";
+$logpath = "$farmpath/logs";
 require_once $configs . "/TempLog.php";
 
 if ( isset( $_SERVER['HTTP_HOST'] ) ) {
 	$temporigurl = $_SERVER['HTTP_HOST'] . " at " .  $_SERVER['REQUEST_URI'];
-	templog( "LocalSettings: orig url was $temporigurl" );
+	templog( $logpath, "LocalSettings: orig url was $temporigurl" );
 }
 
 require $configs . "/CommonSettings.php";
