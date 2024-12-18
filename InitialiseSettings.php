@@ -113,6 +113,9 @@ switch ( $wgDBname ) {
 		# ths is for localization cache stuff, lives on disk
 		$wgCacheDirectory = "$IP/cache/$wgDBname";
 
+		$wgUploadDirectory = "/var/www/html/wikifarm/media/$wgDBname" ;
+		$wgUploadPath = "/mw/media/$wgDBname";
+
 		# FIXME check this
 		$wgScribuntoEngineConf['luastandalone']['luaPath'] = '/usr/bin/lua';
 
